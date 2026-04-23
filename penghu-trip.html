@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澎湖行 2026 · 5/10–12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean:    #0a2a4a;
+    --deep:     #061828;
+    --wave:     #1b5e8a;
+    --sky:      #4db8e8;
+    --coral:    #ff6b4a;
+    --sunset:   #ffaa55;
+    --sand:     #fef5e7;
+    --foam:     #f0f8ff;
+    --text:     #1a1a2e;
+    --muted:    #6b7a8d;
+    --warn:     #e05a2b;
+    --green:    #2e7d5a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--sand);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 45%, var(--wave) 100%);
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(77,184,232,.18) 0%, transparent 70%);
+  }
+
+  /* animated stars */
+  .stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .stars span {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--d,3s) infinite var(--delay,0s) ease-in-out;
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0; transform: scale(1); }
+    50%      { opacity: .8; transform: scale(1.5); }
+  }
+
+  .firework {
+    position: absolute;
+    font-size: clamp(2rem, 8vw, 5rem);
+    opacity: .13;
+    animation: drift 12s infinite linear;
+    pointer-events: none;
+  }
+  @keyframes drift {
+    0%   { transform: translateY(0) rotate(0deg); opacity:.08; }
+    50%  { opacity:.18; }
+    100% { transform: translateY(-120px) rotate(30deg); opacity:.08; }
+  }
+
+  .hero-tag {
+    font-size: .75rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    color: #fff;
+    line-height: 1.1;
+    position: relative;
+    text-shadow: 0 4px 30px rgba(0,0,0,.4);
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--sunset);
+  }
+
+  .hero-sub {
+    margin-top: 1.2rem;
+    color: rgba(255,255,255,.65);
+    font-size: 1rem;
+    letter-spacing: .08em;
+    position: relative;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2.5rem;
+    position: relative;
+  }
+
+  .badge {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    padding: .45rem 1rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    backdrop-filter: blur(8px);
+  }
+
+  /* wave divider */
+  .wave-divider {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .wave-divider svg { display: block; }
+
+  /* ── FLIGHTS ── */
+  .section-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .section-label {
+    font-size: .7rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .5rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: var(--ocean);
+    line-height: 1.2;
+  }
+
+  .flights-section {
+    background: var(--foam);
+    padding: 4rem 1.25rem;
+  }
+
+  .flights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  @media(max-width: 600px) { .flights-grid { grid-template-columns: 1fr; } }
+
+  .flight-card {
+    background: var(--ocean);
+    color: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .flight-card::after {
+    content: '✈';
+    position: absolute;
+    right: 1rem; bottom: .5rem;
+    font-size: 4rem;
+    opacity: .1;
+  }
+  .flight-card.return { background: linear-gradient(135deg, #1a3a5c, var(--wave)); }
+
+  .flight-dir {
+    font-size: .7rem;
+    letter-spacing: .2em;
+    opacity: .6;
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+  }
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  .flight-route .arrow { color: var(--sunset); font-size: 1.3rem; }
+
+  .flight-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,.08);
+    border-radius: .5rem;
+    padding: .6rem .75rem;
+    margin-bottom: .4rem;
+    font-size: .85rem;
+  }
+  .flight-row:last-child { margin-bottom: 0; }
+  .flight-label { opacity: .7; }
+  .flight-time { font-weight: 600; color: var(--sunset); }
+
+  /* ── DAYS ── */
+  .days-section { padding: 5rem 0; }
+
+  .day-block {
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .day-num {
+    flex-shrink: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  }
+  .day-num.d1 { background: linear-gradient(135deg, var(--coral), var(--sunset)); color: #fff; }
+  .day-num.d2 { background: linear-gradient(135deg, var(--ocean), var(--wave)); color: #fff; }
+  .day-num.d3 { background: linear-gradient(135deg, var(--green), #4caf8a); color: #fff; }
+
+  .day-num .num { font-size: 1.6rem; }
+  .day-num .unit { font-size: .55rem; letter-spacing: .1em; opacity: .8; margin-top: .1rem; }
+
+  .day-meta h2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--ocean);
+  }
+  .day-meta .date-tag {
+    font-size: .78rem;
+    color: var(--muted);
+    margin-top: .2rem;
+  }
+
+  /* timeline */
+  .timeline {
+    border-left: 2px solid rgba(10,42,74,.12);
+    padding-left: 1.5rem;
+    margin-left: 1.25rem;
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 1rem;
+    animation: fadeUp .5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.87rem;
+    top: .9rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--sand);
+    border: 2px solid var(--wave);
+  }
+
+  .tl-item.food::before  { border-color: var(--coral); background: #fff3ee; }
+  .tl-item.warn::before  { border-color: var(--warn); background: #fff0eb; }
+  .tl-item.special::before { border-color: var(--sunset); background: #fff8ee; }
+  .tl-item.transport::before { border-color: var(--muted); background: var(--foam); }
+
+  .tl-card {
+    background: #fff;
+    border-radius: .75rem;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    border-left: 3px solid transparent;
+    transition: transform .2s, box-shadow .2s;
+    cursor: default;
+  }
+  .tl-card:hover {
+    transform: translateX(3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.1);
+  }
+
+  .tl-item.food .tl-card   { border-left-color: var(--coral); }
+  .tl-item.warn .tl-card   { border-left-color: var(--warn); background: #fffaf8; }
+  .tl-item.special .tl-card{ border-left-color: var(--sunset); }
+  .tl-item.transport .tl-card { border-left-color: var(--muted); background: var(--foam); }
+
+  .tl-top {
+    display: flex;
+    align-items: baseline;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin-bottom: .3rem;
+  }
+
+  .tl-time {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: .05em;
+    white-space: nowrap;
+  }
+
+  .tl-title {
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--ocean);
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    flex-wrap: wrap;
+  }
+
+  .tl-icon { font-size: 1rem; }
+
+  .tl-note {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: .2rem;
+  }
+
+  .warn-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    background: #fff0eb;
+    color: var(--warn);
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .15rem .55rem;
+    border-radius: .3rem;
+    margin-left: .2rem;
+  }
+
+  .food-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    background: #fff3ee;
+    color: var(--coral);
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .15rem .5rem;
+    border-radius: .3rem;
+    margin-left: .2rem;
+  }
+
+  .special-chip {
+    background: #fff8ee;
+    color: #b86800;
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .15rem .5rem;
+    border-radius: .3rem;
+    margin-left: .2rem;
+  }
+
+  /* ── REMINDERS ── */
+  .reminders-section {
+    background: var(--ocean);
+    color: #fff;
+    padding: 4rem 1.25rem;
+  }
+
+  .reminders-section .section-title { color: #fff; }
+  .reminders-section .section-label { color: rgba(255,255,255,.5); }
+
+  .reminder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .reminder-card {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: .75rem;
+    padding: 1.2rem;
+    backdrop-filter: blur(6px);
+  }
+
+  .reminder-card .r-icon {
+    font-size: 1.8rem;
+    margin-bottom: .75rem;
+    display: block;
+  }
+
+  .reminder-card h4 {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: .4rem;
+    color: var(--sunset);
+  }
+
+  .reminder-card p {
+    font-size: .8rem;
+    opacity: .75;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    color: rgba(255,255,255,.35);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: .75rem;
+    letter-spacing: .05em;
+  }
+
+  /* ── SECTION DIVIDERS ── */
+  .sec-divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--coral), var(--sunset), var(--sky));
+    opacity: .2;
+    margin: 0;
+  }
+
+  .fireworks-banner {
+    background: linear-gradient(135deg, #1a0a3a, #3a1a6e, #0a1a4a);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .fireworks-banner h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 900;
+    margin-bottom: .5rem;
+  }
+  .fireworks-banner p { font-size: .9rem; opacity: .7; }
+  .fireworks-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    opacity: .06;
+    pointer-events: none;
+  }
+
+  /* accommodation card */
+  .accom-card {
+    background: linear-gradient(135deg, var(--ocean), var(--wave));
+    color: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .accom-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .accom-info h4 { font-weight: 700; font-size: 1.05rem; margin-bottom: .3rem; }
+  .accom-info p  { font-size: .82rem; opacity: .75; line-height: 1.6; }
+
+  @media (max-width: 480px) {
+    .day-header { gap: .75rem; }
+    .day-num { width: 3.5rem; height: 3.5rem; }
+    .day-num .num { font-size: 1.3rem; }
+    .timeline { padding-left: 1rem; margin-left: .75rem; }
+    .tl-item::before { left: -1.35rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="firework" style="left:8%;top:20%;--delay:0s">🎆</div>
+  <div class="firework" style="left:85%;top:35%;--delay:3s;animation-duration:15s">🎇</div>
+  <div class="firework" style="left:55%;top:70%;--delay:6s;animation-duration:18s">✨</div>
+
+  <p class="hero-tag">2026 旅遊計畫</p>
+  <h1>澎湖<em>．</em>花火</h1>
+  <p class="hero-sub">5月10日（日）— 5月12日（二）· 三天兩夜</p>
+
+  <div class="hero-badges">
+    <span class="badge">🛵 租機車自駕</span>
+    <span class="badge">🏠 天邊海角民宿</span>
+    <span class="badge">🎆 花火節 5/11</span>
+    <span class="badge">👥 三組同行</span>
+  </div>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style="width:100%;height:70px">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,30 1440,40 L1440,70 L0,70 Z" fill="#fef5e7"/>
+    </svg>
+  </div>
+</header>
+
+<!-- FLIGHTS -->
+<section class="flights-section">
+  <div class="section-wrap">
+    <p class="section-label">航班資訊</p>
+    <h2 class="section-title">去程 & 回程</h2>
+
+    <div class="flights-grid">
+      <!-- 去程 台中 -->
+      <div class="flight-card">
+        <p class="flight-dir">去程 · 5/10（日）</p>
+        <div class="flight-route">
+          <span>台中</span>
+          <span class="arrow">→</span>
+          <span>澎湖</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">出發</span>
+          <span class="flight-time">08:30</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">抵達</span>
+          <span class="flight-time">09:15</span>
+        </div>
+      </div>
+
+      <!-- 去程 高雄 -->
+      <div class="flight-card">
+        <p class="flight-dir">去程 · 5/10（日）</p>
+        <div class="flight-route">
+          <span>高雄</span>
+          <span class="arrow">→</span>
+          <span>澎湖</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">出發</span>
+          <span class="flight-time">08:20</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">抵達</span>
+          <span class="flight-time">09:00</span>
+        </div>
+      </div>
+
+      <!-- 回程 台中 -->
+      <div class="flight-card return">
+        <p class="flight-dir">回程 · 5/12（二）</p>
+        <div class="flight-route">
+          <span>澎湖</span>
+          <span class="arrow">→</span>
+          <span>台中</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">出發</span>
+          <span class="flight-time">20:25</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">抵達</span>
+          <span class="flight-time">21:05</span>
+        </div>
+      </div>
+
+      <!-- 回程 高雄 -->
+      <div class="flight-card return">
+        <p class="flight-dir">回程 · 5/12（二）</p>
+        <div class="flight-route">
+          <span>澎湖</span>
+          <span class="arrow">→</span>
+          <span>高雄</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">出發</span>
+          <span class="flight-time">19:30</span>
+        </div>
+        <div class="flight-row">
+          <span class="flight-label">抵達</span>
+          <span class="flight-time">20:10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 住宿 -->
+    <div class="accom-card">
+      <div class="accom-icon">🏠</div>
+      <div class="accom-info">
+        <h4>天邊海角民宿</h4>
+        <p>馬公市民族路 · 兩晚住宿<br>
+        民宿合作租車公司提供機場接送，落地後直接接至民宿辦理租機車，對面即為租車行。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sec-divider"></div>
+
+<!-- DAYS -->
+<section class="days-section">
+  <div class="section-wrap">
+
+    <!-- ── DAY 1 ── -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num d1">
+          <span class="num">1</span>
+          <span class="unit">DAY</span>
+        </div>
+        <div class="day-meta">
+          <h2>抵達 ＋ 東南線探索</h2>
+          <p class="date-tag">5月10日（日）· 落地即出發</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item transport">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">09:00–09:15</span>
+              <span class="tl-title"><span class="tl-icon">🛬</span> 澎湖機場降落</span>
+            </div>
+            <p class="tl-note">高雄組 09:00、台中組 09:15 落地。租車公司接機，直接送往民宿。</p>
+          </div>
+        </div>
+
+        <div class="tl-item transport">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">09:45</span>
+              <span class="tl-title"><span class="tl-icon">🏠</span> 天邊海角民宿</span>
+            </div>
+            <p class="tl-note">放行李、換裝，到對面辦理租機車手續。各組自行領車準備出發。</p>
+          </div>
+        </div>
+
+        <div class="tl-item food warn">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">10:30</span>
+              <span class="tl-title"><span class="tl-icon">🍲</span> 石泉牛雜湯
+                <span class="food-chip">早午餐</span>
+                <span class="warn-chip">⚠ 週一公休</span>
+              </span>
+            </div>
+            <p class="tl-note">在地人最愛的早午餐，5:30 開賣、12:30 打烊。週一公休，今天（週日）是唯一機會，必吃！</p>
+          </div>
+        </div>
+
+        <div class="tl-item warn">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">11:30</span>
+              <span class="tl-title"><span class="tl-icon">🌊</span> 奎壁山 摩西分海
+                <span class="warn-chip">⚠ 潮汐</span>
+              </span>
+            </div>
+            <p class="tl-note">出發前務必查當天低潮時間，需提前 30–45 分鐘抵達等候。若潮汐不配合可調整至下午。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">13:30</span>
+              <span class="tl-title"><span class="tl-icon">🏖</span> 山水沙灘</span>
+            </div>
+            <p class="tl-note">白沙細軟、海水清澈，旁邊就有 7-11，下午場最舒服，盡情戲水放空。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">15:45</span>
+              <span class="tl-title"><span class="tl-icon">🌬</span> 風櫃聽濤</span>
+            </div>
+            <p class="tl-note">海浪打入玄武岩縫隙，發出渾厚鳴響，超療癒。風很大請抓好安全。</p>
+          </div>
+        </div>
+
+        <div class="tl-item food warn">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">18:00</span>
+              <span class="tl-title"><span class="tl-icon">🦞</span> 晚餐：海鮮辦桌
+                <span class="food-chip">晚餐</span>
+                <span class="warn-chip">⚠ 提早一個月訂位</span>
+              </span>
+            </div>
+            <p class="tl-note">第一晚大家圍坐辦桌最熱鬧！花火節旺季澎湖餐廳超搶手，務必提前一個月訂位。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── DAY 2 ── -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num d2">
+          <span class="num">2</span>
+          <span class="unit">DAY</span>
+        </div>
+        <div class="day-meta">
+          <h2>西嶼貫穿 ＋ 花火節</h2>
+          <p class="date-tag">5月11日（一）· 最精華的一天</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item food">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">09:00</span>
+              <span class="tl-title"><span class="tl-icon">🌳</span> 通樑古榕 吃冰
+                <span class="food-chip">點心</span>
+              </span>
+            </div>
+            <p class="tl-note">300 年老榕氣根壯觀蔓延，旁邊就有仙人掌冰！逛逛廟宇再出發往西嶼。</p>
+          </div>
+        </div>
+
+        <div class="tl-item food">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">10:00</span>
+              <span class="tl-title"><span class="tl-icon">🐋</span> 小門鯨魚洞 + 小卷麵線
+                <span class="food-chip">午餐</span>
+              </span>
+            </div>
+            <p class="tl-note">玄武岩海蝕地景超壯觀，洞口外的小卷麵線攤是必吃！先吃再逛，風很大要注意安全。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">11:15</span>
+              <span class="tl-title"><span class="tl-icon">🐢</span> 竹灣大義宮 看海龜</span>
+            </div>
+            <p class="tl-note">廟宇地下室飼養大海龜，是很特別的在地文化景點，不容錯過。</p>
+          </div>
+        </div>
+
+        <div class="tl-item special">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">12:00</span>
+              <span class="tl-title"><span class="tl-icon">🪨</span> 大果葉柱狀玄武岩
+                <span class="special-chip">必拍</span>
+              </span>
+            </div>
+            <p class="tl-note">列名全球最美海灣，下方有心形水潭，俯瞰角度超夢幻。全天開放。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">13:00</span>
+              <span class="tl-title"><span class="tl-icon">🏘</span> 二崁古厝</span>
+            </div>
+            <p class="tl-note">閩南傳統聚落保存完整，有文創小店、飲料冰品和澎湖貓咪，逛一圈約一小時。</p>
+          </div>
+        </div>
+
+        <div class="tl-item warn">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">14:15</span>
+              <span class="tl-title"><span class="tl-icon">🏮</span> 漁翁島燈塔（西嶼燈塔）
+                <span class="warn-chip">⚠ 週一館內不開放</span>
+              </span>
+            </div>
+            <p class="tl-note">館內週一公休，但懸崖步道與外觀全天可逛，海景絕美，值得專程來。</p>
+          </div>
+        </div>
+
+        <div class="tl-item food">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">17:30</span>
+              <span class="tl-title"><span class="tl-icon">🔥</span> 晚餐：海鮮燒烤（馬公）
+                <span class="food-chip">晚餐</span>
+              </span>
+            </div>
+            <p class="tl-note">提早吃完、回民宿換衣，準備步行去看煙火！</p>
+          </div>
+        </div>
+
+        <div class="tl-item special">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">20:00</span>
+              <span class="tl-title"><span class="tl-icon">🎆</span> 觀音亭 — 花火節
+                <span class="special-chip">今晚主角</span>
+              </span>
+            </div>
+            <p class="tl-note">從民宿步行 10–15 分鐘即可抵達觀音亭。建議 20:00 前出發卡位，煙火約 21:00 開始。結束後步行返回民宿最輕鬆。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── DAY 3 ── -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num d3">
+          <span class="num">3</span>
+          <span class="unit">DAY</span>
+        </div>
+        <div class="day-meta">
+          <h2>馬公收尾 ＋ 返程</h2>
+          <p class="date-tag">5月12日（二）· 輕鬆逛、帶回家</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">09:30</span>
+              <span class="tl-title"><span class="tl-icon">🏛</span> 馬公中央老街 & 天后宮</span>
+            </div>
+            <p class="tl-note">全台最古老媽祖廟之一，旁邊的四眼井必拍。老街買早餐順便逛丁香花生伴手禮。</p>
+          </div>
+        </div>
+
+        <div class="tl-item food warn">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">11:00</span>
+              <span class="tl-title"><span class="tl-icon">🌿</span> 玉冠嫩仙草
+                <span class="food-chip">甜點</span>
+                <span class="warn-chip">⚠ 排隊</span>
+              </span>
+            </div>
+            <p class="tl-note">10:00 開門，人氣極高。仙草刨冰料多量足，要有排隊的心理準備。</p>
+          </div>
+        </div>
+
+        <div class="tl-item food warn">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">12:00</span>
+              <span class="tl-title"><span class="tl-icon">🫘</span> 青泉豆花
+                <span class="food-chip">甜點</span>
+                <span class="warn-chip">⚠ 中午才開</span>
+              </span>
+            </div>
+            <p class="tl-note">約中午開始營業、賣完即收。在地人激推，豆花料多分量大，必吃！</p>
+          </div>
+        </div>
+
+        <div class="tl-item food">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">13:00</span>
+              <span class="tl-title"><span class="tl-icon">🐟</span> 午餐 & 伴手禮採購</span>
+            </div>
+            <p class="tl-note">吃頓海鮮麵或在地小吃，接著掃貨：牛軋糖、丁香魚乾、仙人掌果醬、花生糖。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">14:00</span>
+              <span class="tl-title"><span class="tl-icon">🛍</span> 三號港（澎湖購物廣場）免稅</span>
+            </div>
+            <p class="tl-note">10:00–21:00 開放。菸酒可在此免稅購買，機場領取。吹冷氣、逛逛，打發最後幾小時。</p>
+          </div>
+        </div>
+
+        <div class="tl-item transport">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">17:30</span>
+              <span class="tl-title"><span class="tl-icon">🛵</span> 全員集合 統一還車</span>
+            </div>
+            <p class="tl-note">所有機車統一歸還，租車公司接送全員前往機場。</p>
+          </div>
+        </div>
+
+        <div class="tl-item transport">
+          <div class="tl-card">
+            <div class="tl-top">
+              <span class="tl-time">17:45</span>
+              <span class="tl-title"><span class="tl-icon">✈</span> 前往機場 各自候機</span>
+            </div>
+            <p class="tl-note">機場等候、一起吃點東西互相送機。<br>
+            🛫 高雄組 19:30 起飛 → 20:10 降落<br>
+            🛫 台中組 20:25 起飛 → 21:05 降落</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FIREWORKS BANNER -->
+<div class="fireworks-banner">
+  <div class="fireworks-bg">🎆</div>
+  <h3>🎆 5月11日（一）澎湖國際花火節</h3>
+  <p>觀音亭海灣 · 煙火約 21:00 開始 · 從民宿步行即可抵達</p>
+</div>
+
+<!-- REMINDERS -->
+<section class="reminders-section">
+  <div class="section-wrap">
+    <p class="section-label">出發前確認</p>
+    <h2 class="section-title">重要提醒</h2>
+
+    <div class="reminder-grid">
+      <div class="reminder-card">
+        <span class="r-icon">🛵</span>
+        <h4>機車務必提前預約</h4>
+        <p>5月花火節旺季，機車超搶手。落地前先預約好，或請民宿代為安排。</p>
+      </div>
+      <div class="reminder-card">
+        <span class="r-icon">🌊</span>
+        <h4>奎壁山 查潮汐再出發</h4>
+        <p>摩西分海需配合低潮，出發前 30–45 分鐘抵達等候。建議查詢中央氣象署潮汐預報。</p>
+      </div>
+      <div class="reminder-card">
+        <span class="r-icon">🦞</span>
+        <h4>辦桌提前一個月訂位</h4>
+        <p>花火節期間澎湖餐廳極為搶手，海鮮辦桌務必提前預約，人數也要先確認。</p>
+      </div>
+      <div class="reminder-card">
+        <span class="r-icon">🍲</span>
+        <h4>石泉牛雜湯 週一公休</h4>
+        <p>只有 Day 1（週日）才能吃到，錯過就沒了！12:30 打烊，別睡過頭。</p>
+      </div>
+      <div class="reminder-card">
+        <span class="r-icon">🏮</span>
+        <h4>漁翁島燈塔 週一不開放</h4>
+        <p>館內週一公休，但懸崖步道與外觀全天可遊，不影響整體行程。</p>
+      </div>
+      <div class="reminder-card">
+        <span class="r-icon">🎆</span>
+        <h4>花火節卡位要趁早</h4>
+        <p>煙火 21:00 開始，建議 20:00 前從民宿步行出發。民宿在民族路，走到觀音亭約 10–15 分鐘。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>澎湖行 2026 · 5/10–12 &nbsp;|&nbsp; 三天兩夜 · 花火節限定</p>
+  <p style="margin-top:.4rem;opacity:.5">好好玩，平安回來 🏝</p>
+</footer>
+
+<script>
+  // generate stars
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('span');
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --d:${2+Math.random()*4}s;
+      --delay:${Math.random()*5}s;
+      width:${1+Math.random()*2}px;
+      height:${1+Math.random()*2}px;
+    `;
+    container.appendChild(s);
+  }
+
+  // stagger timeline items on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.animationDelay = `${i * 0.05}s`;
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.tl-item').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
